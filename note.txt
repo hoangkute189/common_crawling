@@ -1,0 +1,9 @@
+scrapy crawl edu -a domain=dthu.edu.vn -a surl=https://www.dthu.edu.vn
+
+scrapy crawl edu -a domain=toaan.gov.vn -a surl=https://www.toaan.gov.vn/webcenter/ShowProperty?nodeId=/UCMServer/TAND025648
+
+scrapy crawl edu -a domain=tdtu.edu.vn -a surl=https://www.tdtu.edu.vn
+
+scrapy crawl edu -a domain=arxiv.org -a surl=https://arxiv.org/pdf/2305.16960.pdf
+
+scrapy crawl edu -a domain=jad.shahroodut.ac.ir -a surl=https://jad.shahroodut.ac.ir
