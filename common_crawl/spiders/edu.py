@@ -20,6 +20,17 @@ class ConnectDatabase:
         self.cur = self.con.cursor()
 
     def get_ids(self):
+        self.cur.execute("""CREATE TABLE IF NOT EXISTS common_crawl
+        (
+            id TEXT PRIMARY KEY,
+            url TEXT,
+            title TEXT,
+            content TEXT,
+            html TEXT,
+            domain TEXT
+        );
+        """)
+        self.con.commit()
         ids = self.cur.execute("""SELECT id FROM common_crawl""").fetchall()
         self.ids_seen = set(i[0] for i in ids)
         return self.ids_seen
