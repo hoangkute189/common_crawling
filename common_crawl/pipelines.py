@@ -8,12 +8,16 @@ import sqlite3
 
 class CommonCrawlPipeline:
     def process_item(self, item, spider):
-        input_text = re.sub(r'\n{1,}|\s+', ' ', item['content'])
-        word_count = len(input_text.split(' '))
+        try:
+            input_text = re.sub(r'\n{1,}|\s+', ' ', item['content'])
+            num_word = len(input_text.split(' '))
 
-        if word_count < 150:
+            if num_word < 150:
+                raise DropItem("This is a home page. Item excluded. ")
+            
+            return item
+        except:
             raise DropItem("This is a home page. Item excluded. ")
-        return item
 
 
 class SaveToDatabasePipeline:
