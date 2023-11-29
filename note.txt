@@ -1,9 +1,32 @@
-scrapy crawl edu -a domain=dthu.edu.vn -a surl=https://www.dthu.edu.vn
-
-scrapy crawl edu -a domain=toaan.gov.vn -a surl=https://www.toaan.gov.vn/webcenter/ShowProperty?nodeId=/UCMServer/TAND025648
-
 ### TDTU
 scrapy crawl edu -a domain=tdtu.edu.vn -a surl=https://www.tdtu.edu.vn
 
 ### Đại học mở
 scrapy crawl edu -a domain=ou.edu.vn -a surl=https://ou.edu.vn
+
+### Đại học Y dược tp Hồ Chí Minh
+scrapy crawl edu -a domain=ump.edu.vn -a surl=https://ump.edu.vn
+
+### Đại học Phạm Ngọc Thạch
+scrapy crawl edu -a domain=pqldt.pnt.edu.vn -a surl=https://pqldt.pnt.edu.vn
+
+### Đại học Văn Lang
+scrapy crawl edu -a domain=vlu.edu.vn -a surl=https://vlu.edu.vn
+
+### Đại học Kinh tế hcm
+scrapy crawl edu -a domain=ueh.edu.vn -a surl=https://www.ueh.edu.vn
+
+### Đại học Sư phạm kĩ thuật
+scrapy crawl edu -a domain=hcmute.edu.vn -a surl=https://hcmute.edu.vn
+
+### Đại học Hoa Sen
+scrapy crawl edu -a domain=hoasen.edu.vn -a surl=https://www.hoasen.edu.vn
+
+### Đại học HUTECCH
+scrapy crawl edu -a domain=hutech.edu.vn -a surl=https://www.hutech.edu.vn
+
+### Đại học cảnh sát nhân dân
+scrapy crawl edu -a domain=dhcsnd.edu.vn -a surl=https://dhcsnd.edu.vn
+
+### Đại học Ngân Hàng
+scrapy crawl edu -a domain=hub.edu.vn -a surl=https://hub.edu.vn
