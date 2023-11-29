@@ -77,5 +77,16 @@ class CommonCrawlItem(scrapy.Item):
         ),
         output_processor=TakeFirst()
     )
-    html = scrapy.Field()
+    html = scrapy.Field(
+        input_processor=MapCompose(
+            try_string
+        ),
+        output_processor=TakeFirst()
+    )
+    domain = scrapy.Field(
+        input_processor=MapCompose(
+            try_string
+        ),
+        output_processor=TakeFirst()
+    )
     metadata = scrapy.Field()

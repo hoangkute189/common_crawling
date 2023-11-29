@@ -28,15 +28,16 @@ class SaveToDatabasePipeline:
             url TEXT,
             title TEXT,
             content TEXT,
-            html TEXT
+            html TEXT,
+            domain TEXT
         );
         """)
         self.con.commit()
 
     def process_item(self, item, spider):
         self.con.execute("""
-        INSERT INTO common_crawl (id, url, title, content) VALUES (?, ?, ?, ?)
-        """, (item["id"], item["url"], item["title"], item["content"], item['html']))
+        INSERT INTO common_crawl (id, url, title, content, html, domain) VALUES (?, ?, ?, ?, ?, ?)
+        """, (item["id"], item["url"], item["title"], item["content"], item['html'], item['domain']))
         self.con.commit()
 
     def clode_spider(self, spider):

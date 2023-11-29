@@ -10,6 +10,7 @@ import re
 import hashlib
 import requests
 import sqlite3
+import os
 
 class ConnectDatabase:
     def __init__(self):
@@ -42,7 +43,7 @@ class TdtuSpider(CrawlSpider):
         super(TdtuSpider, self).__init__(*args, **kwargs)
         self.start_urls = [self.surl]
         self.allowed_domains = [self.domain]
-        # self.ids_seen = ConnectDatabase().get_ids()
+        self.ids_seen = ConnectDatabase().get_ids()
 
     @property
     def header(self):
@@ -57,13 +58,23 @@ class TdtuSpider(CrawlSpider):
             if response.status_code == 200:
                 self.save_pdf(path, response)
                 
-        
+    def create_folder_domain(self, folder_path):
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+            self.logger.info('Folder creates.')
+            
     def save_pdf(self, path, response):
         path = path.split('/')[-1]
-        path_destination = 'pdf_file/' + path
-        self.logger.info('Saving PDF %s', path_destination)
-        with open(path_destination, 'wb') as f:
-            f.write(response.content)
+        folder_path = 'pdf_file/' + self.allowed_domains[0]
+        path_destination = 'pdf_file/' + self.allowed_domains[0] + '/' + path
+        
+        if os.path.exists(path_destination):
+            self.logger.info('File exists.')
+        else:
+            self.create_folder_domain(folder_path)
+            self.logger.info('Saving PDF %s', path_destination)
+            with open(path_destination, 'wb') as f:
+                f.write(response.content)
     
     # def is_binary_content_pdf(self, content):
     #     pdf_signature = b'%PDF'
@@ -72,18 +83,14 @@ class TdtuSpider(CrawlSpider):
     def parse(self, response):
         id = hashlib.sha256(response.url.encode('utf-8')).hexdigest()
 
-        # if id in self.ids_seen:
-        #     return
+        if id in self.ids_seen:
+            return
         
-        # Use a CSS selector to extract href attributes from <a> tags
-        hrefs = response.css('a::attr(href)').extract()
-        pdf_links = [i for i in hrefs if i.endswith('.pdf')]
-        if pdf_links:
-            self.download_pdf(pdf_links)
-            
-        # if response.url.endswith(".pdf") or self.is_binary_content_pdf(response.body):
-        #     self.save_pdf(response, id)
-        #     return
+        # # Use a CSS selector to extract href attributes from <a> tags
+        # hrefs = response.css('a::attr(href)').extract()
+        # pdf_links = [i for i in hrefs if i.endswith('.pdf')]
+        # if pdf_links:
+        #     self.download_pdf(pdf_links)
 
         soup = BeautifulSoup(response.body, 'html.parser')
         soup.attrs.clear()
@@ -93,6 +100,7 @@ class TdtuSpider(CrawlSpider):
         item.add_value('url', response.url)
         item.add_value('title', soup.title)
         item.add_value('content', str(soup.body))
-        item.add_value('html', soup.body)
+        item.add_value('html', str(soup.body))
+        item.add_value('domain', str(self.allowed_domains[0]))
 
         yield item.load_item()
