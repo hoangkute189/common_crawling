@@ -30,3 +30,15 @@ scrapy crawl edu -a domain=dhcsnd.edu.vn -a surl=https://dhcsnd.edu.vn
 
 ### Đại học Ngân Hàng
 scrapy crawl edu -a domain=hub.edu.vn -a surl=https://hub.edu.vn
+
+### Đại học Y Hà Nội
+scrapy crawl edu -a domain=hmu.edu.vn -a surl=https://hmu.edu.vn
+
+### Đại học Bách Khoa tp HCM (Code bằng js, chưa cào)
+scrapy crawl edu -a domain=hcmut.edu.vn -a surl=https://hcmut.edu.vn
+
+### Đại học Bách Khoa Hà Nội (Chưa cào được)
+scrapy crawl edu -a domain=hust.edu.vn -a surl=https://hust.edu.vn
+
+### Đại học Công Nghệ Hà Nội 
+scrapy crawl edu -a domain=vnu.edu.vn -a surl=https://vnu.edu.vn/home

@@ -2,3 +2,5 @@ data.jsonl
 .vscode
 common_crawl.db
 pdf_file
+test.py
+text.txt
