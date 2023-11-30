@@ -18,6 +18,38 @@ class CommonCrawlPipeline:
             return item
         except:
             raise DropItem("This is a home page. Item excluded. ")
+        
+class ExtractTextPipeline:
+    def process_item(self, item, spider):
+        try:
+            item['content'] = self.remove_unnecessary_text(item['content'])
+            
+            return item
+        except:
+            raise DropItem("Can't extract this text! ")
+    
+    def remove_unnecessary_text(self, text):
+        patterns_to_remove = [
+            r'^\| \|\s*',
+            r'Main navigation en\s*',
+            r'Main navigation\s*',
+            r'Toggle navigation\s*',
+            r'Menu-Page-vi\s*',
+            r'Menu-Page-en\s*',
+            r'Pagination\s*',
+            r'Breadcrumb\s*',
+            r'^Loading...\s*',
+            r'^Tin tức\s*',
+            r'^-\s*',
+            r'^x\s*',
+            r'\b\d{1,2}\sTh\d{1,2}\s\d{2}\b\s*',
+            r"Page\s\d{1,2}",
+            r'Copyright © Đại học Tôn Đức Thắng\s*',
+            r'Copyright © Ton Duc Thang University\s*'
+        ]
+
+        modified_text = re.sub('|'.join(patterns_to_remove), '', text, flags=re.MULTILINE)
+        return modified_text
 
 
 class SaveToDatabasePipeline:
