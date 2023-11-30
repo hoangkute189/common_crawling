@@ -2,3 +2,6 @@ data.jsonl
 .vscode
 common_crawl.db
 pdf_file
+__pycache__/
+.ipynb_checkpoints/
+hieu-data/
