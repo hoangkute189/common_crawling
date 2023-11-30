@@ -68,7 +68,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    "common_crawl.pipelines.CommonCrawlPipeline": 100,
-   "common_crawl.pipelines.CommonCrawlPipeline": 200,
+   "common_crawl.pipelines.ExtractTextPipeline": 200,
    "common_crawl.pipelines.DuplicatesPipeline": 300,
    "common_crawl.pipelines.SaveToDatabasePipeline": 400,
 }

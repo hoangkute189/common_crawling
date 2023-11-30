@@ -42,3 +42,12 @@ scrapy crawl edu -a domain=hust.edu.vn -a surl=https://hust.edu.vn
 
 ### Đại học Công Nghệ Hà Nội 
 scrapy crawl edu -a domain=vnu.edu.vn -a surl=https://vnu.edu.vn/home
+
+### Đại học Công Nghệ Thông tin
+scrapy crawl edu -a domain=uit.edu.vn -a surl=https://www.uit.edu.vn
+
+### Đại học Khoa Học Tự Nhiên
+scrapy crawl edu -a domain=hus.vnu.edu.vn -a surl=https://hus.vnu.edu.vn
+
+### Đại học Nông Lâm
+scrapy crawl edu -a domain=phnt.hcmuaf.edu.vn -a surl=https://phnt.hcmuaf.edu.vn

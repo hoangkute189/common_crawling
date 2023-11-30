@@ -29,6 +29,7 @@ class ExtractTextPipeline:
     def remove_unnecessary_text(self, text):
         patterns_to_remove = [
             r'^\| \|\s*',
+            r'^\|\s*',
             r'Main navigation en\s*',
             r'Main navigation\s*',
             r'Toggle navigation\s*',
@@ -41,13 +42,12 @@ class ExtractTextPipeline:
             r'^-\s*',
             r'^x\s*',
             r'\b\d{1,2}\sTh\d{1,2}\s\d{2}\b\s*',
-            r"Page\s\d{1,2}",
-            r'Copyright © Đại học Tôn Đức Thắng\s*',
-            r'Copyright © Ton Duc Thang University\s*'
+            r"Page\s\d{1,2}"
         ]
 
         modified_text = re.sub('|'.join(patterns_to_remove), '', text, flags=re.MULTILINE)
-        return modified_text
+        format_text = re.sub('\n{3,}', '\n\n', modified_text)
+        return format_text
 
 
 class SaveToDatabasePipeline:
