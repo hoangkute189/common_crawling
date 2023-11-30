@@ -1,8 +1,6 @@
 from scrapy.exceptions import DropItem
 
 import re
-import json
-
 import sqlite3
 
 
