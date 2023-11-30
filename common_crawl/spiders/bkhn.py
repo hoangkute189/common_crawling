@@ -1,12 +1,12 @@
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 import sys
-# import jsonlines as jsonl
+import jsonlines as jsonl
 from bs4 import BeautifulSoup
 from scrapy.loader import ItemLoader
 sys.path.append("./")
 from items import CommonCrawlItem
-from colorama import Fore, Back, Style
+# from colorama import Fore, Back, Style
 #from urllib.parse import urlparse
 
 class BKHNConfig:
@@ -54,10 +54,10 @@ class BKHNSpider(CrawlSpider):
 
     def log_info(self, text):
       self.logger.info(text)
-      # print("Text:",text)
-      print(Back.GREEN,text,Style.RESET_ALL)
+      print("Text:",text)
+      # print(Back.GREEN,text,Style.RESET_ALL)
 
     def log_error(self, text):
       self.logger.info(text)
-      # print("Error:",text)
-      print(Back.RED,text,Style.RESET_ALL)
+      print("Error:",text)
+      # print(Back.RED,text,Style.RESET_ALL)
