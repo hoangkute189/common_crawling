@@ -1,9 +1,9 @@
-SELECT id FROM common_crawl;
+-- SELECT domain FROM common_crawl;
 
 
--- SELECT id, title, url FROM common_crawl;
+SELECT id, title, url FROM common_crawl;
 
 
 -- DELETE FROM common_crawl;
 
--- SELECT url, title, content FROM common_crawl WHERE id = 'ffff5979f68a2701a955995c9ff705f8e8e3587ff9d46d0f684bbfe6c84279ab';
+-- SELECT url, title, content FROM common_crawl WHERE id = 'd71a2d1b71f712220d442d509b88c4252b43d9fac10a10564e1e833c1d491098';
