@@ -6,8 +6,6 @@ from bs4 import BeautifulSoup
 from scrapy.loader import ItemLoader
 sys.path.append("./")
 from items import CommonCrawlItem
-# from colorama import Fore, Back, Style
-#from urllib.parse import urlparse
 
 class BKHNConfig:
 
@@ -21,8 +19,8 @@ class BKHNSpider(CrawlSpider):
     allowed_domains = ["hust.edu.vn"]
     start_urls = ["https://hust.edu.vn/"]
     rules = [
-      Rule(LinkExtractor(allow=r"https://hust\.edu\.vn/.*"), callback='parse_item', follow=True),
-      Rule(LinkExtractor(allow=r"https://www\.hust\.edu\.vn/.*"), callback='parse_item', follow=True)
+      Rule(LinkExtractor(allow=r"https://.*hust\.edu\.vn/.*"),\
+       callback='parse_item', follow=True),
     ]
 
     def __init__(self, *a, **kw):
@@ -50,6 +48,8 @@ class BKHNSpider(CrawlSpider):
       item.add_value('content', content.text)
       item.add_value('html', str(content))
       item.add_value('domain', str(self.allowed_domains[0]))
+      # with jsonl.open("../hieu-data/bkhn.jsonl", "a") as f:
+        # f.write(data)
       yield item.load_item()
 
     def log_info(self, text):
