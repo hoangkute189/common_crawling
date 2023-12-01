@@ -10,8 +10,8 @@ from items import CommonCrawlItem
 class FTUConfig:
 
   def __init__(self):
-    self.title_css = ["h1.article-title"]
-    self.content_css = []
+    self.title_css = [".article-title"]
+    self.content_css = [".article-full"]
 
   def get_config(self, index = 0):
     try:
