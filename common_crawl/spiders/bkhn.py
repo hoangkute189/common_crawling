@@ -10,8 +10,18 @@ from items import CommonCrawlItem
 class BKHNConfig:
 
   def __init__(self):
-    self.title_css = ".title"
-    self.content_css = "#news-bodyhtml"
+    self.select_idx = 0
+    self.title_css = [".title"]
+    self.content_css = ["#news-bodyhtml"]
+
+  def get_config(self):
+    try:
+      title = self.title_css[self.select_idx]
+      content = self.content_css[self.select_idx]
+      self.select_idx += 1
+    except:
+      return None, None
+    return title, content
 
 
 class BKHNSpider(CrawlSpider):
@@ -38,26 +48,21 @@ class BKHNSpider(CrawlSpider):
       soup = BeautifulSoup(response.body, 'html.parser')
       soup.attrs.clear()
       item = ItemLoader(item=CommonCrawlItem())
+      
+      title = None
+      content = None
       # config
-      title = soup.select_one(self.config.title_css)
-      content = soup.select_one(self.config.content_css)
-
+      while(title == None or content == None):
+        title_css, content_css = self.config.get_config()
+        if title_css == None:
+          break
+        # get soup
+        title = soup.select_one(title_css)
+        content = soup.select_one(content_css)
       item.add_value('id', response.url)
       item.add_value('url', response.url)
       item.add_value('title', title.text)
       item.add_value('content', content.text)
       item.add_value('html', str(content))
       item.add_value('domain', str(self.allowed_domains[0]))
-      # with jsonl.open("../hieu-data/bkhn.jsonl", "a") as f:
-        # f.write(data)
       yield item.load_item()
-
-    def log_info(self, text):
-      self.logger.info(text)
-      print("Text:",text)
-      # print(Back.GREEN,text,Style.RESET_ALL)
-
-    def log_error(self, text):
-      self.logger.info(text)
-      print("Error:",text)
-      # print(Back.RED,text,Style.RESET_ALL)
