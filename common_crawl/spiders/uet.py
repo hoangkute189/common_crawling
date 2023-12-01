@@ -10,17 +10,15 @@ from items import CommonCrawlItem
 class UETConfig:
 
   def __init__(self):
-    self.select_idx = 0
     self.title_css = [".single-content-title",\
      "#content strong"]
     self.content_css = [".single-post-content-text",\
      ".single-page-content"]
 
-  def get_config(self):
+  def get_config(self, index = 0):
     try:
-      title = self.title_css[self.select_idx]
-      content = self.content_css[self.select_idx]
-      self.select_idx += 1
+      title = self.title_css[index]
+      content = self.content_css[index]
     except:
       return None, None
     return title, content
@@ -52,8 +50,10 @@ class UETSpider(CrawlSpider):
       title = None
       content = None
       # config
+      index = -1
       while(title == None or content == None):
-        title_css, content_css = self.config.get_config()
+        index += 1
+        title_css, content_css = self.config.get_config(index)
         if title_css == None:
           break
         # get soup
