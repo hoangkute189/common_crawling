@@ -24,7 +24,7 @@ class NEUConfig:
 class NEUSpider(CrawlSpider):
     name = "neu"
     allowed_domains = ["neu.edu.vn"]
-    start_urls = ["https://www.neu.edu.vn/"]
+    start_urls = ["https://www.neu.edu.vn/", "https://www.neu.edu.vn/"]
     rules = [
       Rule(LinkExtractor(allow=r"https://.*neu\.edu\.vn/.*"),\
        callback='parse_item', follow=True),
