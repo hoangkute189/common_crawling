@@ -31,7 +31,7 @@ class FTUSpider(CrawlSpider):
     ]
 
     def __init__(self, *a, **kw):
-      super(FTUConfig, self).__init__(*a, **kw)
+      super(FTUSpider, self).__init__(*a, **kw)
       self.config = FTUConfig()
       print("Init")
 
